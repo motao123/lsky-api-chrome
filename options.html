@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="options-page">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lsky Pro - 设置</title>
+  <link rel="preload" href="js/options.js" as="script">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <div class="form">
+    <header>
+      <h1 style="text-align: center; font-size: 24px; font-weight: 600; color: #1f2937; margin-bottom: 30px;">
+        图床设置
+      </h1>
+    </header>
+    
+    <section class="form-group">
+      <label for="domain">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M2 12h20"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        图床地址
+      </label>
+      <input 
+        type="url" 
+        class="input m-b-10" 
+        id="domain" 
+        placeholder="https://img.imotao.com"
+        autocomplete="url"
+      >
+      <p style="font-size: 12px; color: #9ca3af; margin-top: 6px;">支持 http:// 和 https:// 协议</p>
+    </section>
+
+    <section class="form-group">
+      <label for="defaultFormat">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;">
+          <path d="M4 7h16M4 12h16M4 17h10"/>
+        </svg>
+        默认输出格式
+      </label>
+      <select id="defaultFormat" class="input m-b-10">
+        <option value="url">URL</option>
+        <option value="markdown">Markdown</option>
+        <option value="html">HTML</option>
+        <option value="bbcode">BBCode</option>
+        <option value="thumbnail">缩略图</option>
+      </select>
+      <p style="font-size: 12px; color: #9ca3af; margin-top: 6px;">弹窗中将默认按该格式显示链接</p>
+    </section>
+
+    <section class="form-group">
+      <label for="uploadStrategy">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;">
+          <path d="M12 2l4 8H8l4-8zM2 22h20l-10-6-10 6z"/>
+        </svg>
+        上传策略ID
+      </label>
+      <input 
+        type="text" 
+        class="input m-b-10" 
+        id="uploadStrategy" 
+        placeholder="如 1、2（可选）"
+        autocomplete="off"
+      >
+      <p style="font-size: 12px; color: #9ca3af; margin-top: 6px;">将按该策略上传，留空则使用默认策略</p>
+    </section>
+
+    <section class="form-group">
+      <label for="retryAttempts">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;">
+          <path d="M3 12a9 9 0 1 0 9-9v3l-4-4 4-4v3a12 12 0 1 1-12 12h3z"/>
+        </svg>
+        自动重试次数
+      </label>
+      <input type="number" id="retryAttempts" class="input m-b-10" placeholder="默认 2" min="0" max="5" step="1">
+      <p class="help">失败时自动重试的最大次数，0 表示不自动重试</p>
+    </section>
+
+    <section class="form-group">
+      <label for="retryBaseDelay">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;">
+          <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+        </svg>
+        重试基础间隔（毫秒）
+      </label>
+      <input type="number" id="retryBaseDelay" class="input m-b-10" placeholder="默认 800" min="200" max="5000" step="100">
+      <p class="help">采用指数退避：基础间隔 × 2^(第N次-1)</p>
+    </section>
+
+    <section class="form-group">
+      <label for="maxFileSizeMB">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;">
+          <rect x="3" y="3" width="18" height="14" rx="2"/>
+        </svg>
+        最大上传文件大小（MB）
+      </label>
+      <input type="number" id="maxFileSizeMB" class="input m-b-10" placeholder="默认 10" min="1" max="200" step="1">
+      <p class="help">超过此大小的文件将被本地阻止</p>
+    </section>
+
+    <section class="form-group">
+      <label for="maxConcurrent">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+        最大并发上传数
+      </label>
+      <input type="number" id="maxConcurrent" class="input m-b-10" placeholder="默认 3" min="1" max="6" step="1">
+      <p class="help">控制并发以避免触发限流</p>
+    </section>
+
+    <section class="form-group">
+      <label for="requestTimeoutMs">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;">
+          <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+        </svg>
+        请求超时时间（毫秒）
+      </label>
+      <input type="number" id="requestTimeoutMs" class="input m-b-10" placeholder="默认 30000" min="5000" max="120000" step="1000">
+      <p class="help">超过此时间自动取消请求</p>
+    </section>
+
+    <section class="form-group">
+      <label for="apiToken">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        API 令牌
+      </label>
+      <input 
+        type="password" 
+        class="input m-b-10" 
+        id="apiToken" 
+        placeholder="请输入访问令牌"
+        autocomplete="current-password"
+      >
+      <p style="font-size: 12px; color: #9ca3af; margin-top: 6px;">在图床后台获取 API Token</p>
+    </section>
+
+    <div id="status" role="alert" aria-live="polite"></div>
+
+    <footer>
+      <div class="options">
+        <button class="btn test" id="testConnection" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 6px;">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          测试连接
+        </button>
+        <button class="btn save" id="save" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 6px;">
+            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+            <polyline points="17 21 17 13 7 13 7 21"/>
+            <polyline points="7 3 7 8 15 8"/>
+          </svg>
+          保存设置
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/options.js"></script>
+</body>
+</html>

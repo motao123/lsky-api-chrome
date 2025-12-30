@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图片上传 - Lsky Pro</title>
+  <link rel="preload" href="js/popup.js" as="script">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <div class="container">
+    <div class="drag-overlay">拖拽图片至此上传</div>
+    <header>
+      <section class="format-selector global-format"></section>
+      <p class="help" aria-live="polite">选择上方格式后，列表中链接统一为该格式。点击链接即可复制。</p>
+    </header>
+    <main class="link-items"></main>
+    
+    <footer class="options">
+      <div class="form-group" style="flex: 1;">
+        <input type="file" class="hide" id="image-input" name="image" multiple accept="image/*">
+        <button class="btn select-files" aria-label="选择图片上传">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          选择图片
+        </button>
+      </div>
+      <div class="form-group" style="flex: 1;">
+        <button class="btn history" aria-label="查看历史记录">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          历史记录
+        </button>
+      </div>
+      <div class="form-group" style="flex: 1;">
+        <button class="btn copy-all" aria-label="批量复制当前列表链接">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+            <rect x="2" y="2" width="13" height="13" rx="2"></rect>
+          </svg>
+          批量复制
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- 历史记录弹窗 -->
+  <div class="history-mask" aria-hidden="true"></div>
+  <aside class="history-container" aria-hidden="true">
+    <header style="display:flex; gap:8px; align-items:center; margin-bottom:10px;">
+      <button class="btn clear-history" aria-label="清空历史记录">清空记录</button>
+      <input type="text" class="input" id="history-search" placeholder="搜索历史（文件名/链接）" style="flex:1;">
+    </header>
+    <main class="link-items"></main>
+    <footer></footer>
+  </aside>
+
+  <script src="js/popup.js"></script>
+</body>
+</html>
